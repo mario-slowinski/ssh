@@ -1,0 +1,12 @@
+---
+- name: "Create ssh client includes"
+  tags:
+    - ssh
+    - ssh.include
+  ansible.builtin.import_tasks: include.yaml
+
+- name: "Update ssh client config"
+  tags:
+    - ssh
+    - ssh.config
+  ansible.builtin.import_tasks: config.yaml

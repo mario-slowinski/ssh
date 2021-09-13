@@ -1,0 +1,8 @@
+---
+- name: "Update ssh client config in '{{ ssh_config['path'] }}'"
+  ansible.builtin.lineinfile:
+    dest: "{{ ssh_config['path'] }}"
+    line: "Include {{ ssh_include['path'] | regex_replace(ssh_config['path'] | dirname +'/') }}"
+    insertbefore: "^$"
+    create: true
+  run_once: true
