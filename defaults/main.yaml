@@ -1,0 +1,13 @@
+---
+ssh_config:
+  path: "~/.ssh/config"
+  owner: "{{ lookup('env','USER') }}"
+
+ssh_include:
+  path: "{{ ssh_config['path'] | dirname }}/include"
+  owner: "{{ lookup('env','USER') }}"
+  options:
+    User: "{{ lookup('env','USER') }}"
+    IdentityFile: ~/.ssh/id_rsa
+    IdentitiesOnly: "yes"
+    UserKnownHostsFile: ~/.ssh/known_hosts

@@ -1,0 +1,12 @@
+---
+- name: "Create ssh client include directory '{{ ssh_include['path'] | dirname }}'"
+  ansible.builtin.file:
+    path: "{{ ssh_include['path'] | dirname }}"
+    state: directory
+  run_once: true
+
+- name: "Create ssh client include '{{ ssh_include['path'] }}'"
+  ansible.builtin.template:
+    src: include.ji2
+    dest: "{{ ssh_include['path'] }}"
+  run_once: true

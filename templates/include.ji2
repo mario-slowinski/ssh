@@ -1,0 +1,12 @@
+{% for host in ansible_play_batch %}
+Host {{ hostvars[host]['inventory_hostname'] }} {{ hostvars[host]['inventory_hostname_short'] }} {{ hostvars[host]['ansible_host'] | default('') }}
+{% if hostvars[host]['ansible_host'] is defined %}
+        Hostname {{ hostvars[host]['ansible_host'] }}
+{% else %}
+        Hostname {{ hostvars[host]['inventory_hostname'] }}
+{% endif %}
+{% for option in ssh_include['options'] | dict2items %}
+        {{ option['key'] }} {{ option['value'] }}
+{% endfor %}
+
+{% endfor %}
